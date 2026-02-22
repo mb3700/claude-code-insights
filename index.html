@@ -337,6 +337,12 @@
   }
   @media (max-width: 700px) {
     .lesson { grid-template-columns: 1fr; }
+    .two-col-grid { grid-template-columns: 1fr; }
+  }
+  .two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
   .lesson-problem h4,
   .lesson-fix h4 {
@@ -783,7 +789,7 @@
     <p class="section-subtitle">Not the way a developer uses it. This is the operational pattern of someone running client deliverables, not shipping code.</p>
   </div>
 
-  <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+  <div class="fade-in two-col-grid">
     <div style="min-width:0">
       <h3 style="font-size:18px;font-weight:700;margin-bottom:24px">The Workflow Pattern</h3>
       <div class="workflow-steps">
@@ -1211,7 +1217,7 @@ Track everything in a todo list so we never lose progress.</div>
 
   <div class="fade-in" style="margin-top:32px">
     <h3 style="font-size:18px;font-weight:700;margin-bottom:20px">Why I chose Claude Code Desktop</h3>
-    <div class="card-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card-grid">
       <div class="card">
         <div class="card-title">It shipped first</div>
         <div class="card-desc">Claude Code Desktop was available weeks before Cowork launched. By the time Cowork arrived, I was already 20+ sessions deep with a working workflow. Timing made the choice for me.</div>
