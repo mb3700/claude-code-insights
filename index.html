@@ -559,6 +559,45 @@
     min-width: 36px;
   }
 
+  /* ── Pricing card features ── */
+  .card ul.plan-features {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+  .card ul.plan-features li {
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 4px 0 4px 22px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .card ul.plan-features li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .card.recommended {
+    border-color: var(--accent);
+    position: relative;
+  }
+  .card.recommended::after {
+    content: 'What I use';
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 99px;
+    letter-spacing: 0.3px;
+  }
+
   /* ── Callout ── */
   .callout {
     background: var(--accent-glow);
@@ -698,6 +737,7 @@
       <li><a href="#setup">Setup</a></li>
       <li><a href="#templates">Templates</a></li>
       <li><a href="#why">Why CC?</a></li>
+      <li><a href="#pricing">Plans</a></li>
       <li><a href="#stats">Stats</a></li>
     </ul>
     <div style="display:flex;gap:8px;align-items:center">
@@ -1241,6 +1281,125 @@ Track everything in a todo list so we never lose progress.</div>
   </div>
 </section>
 
+<!-- ═══════════ PLANS & PRICING ═══════════ -->
+<section id="pricing">
+  <div class="fade-in">
+    <div class="section-label">Plans &amp; Pricing</div>
+    <h2 class="section-title">What Does Claude Actually Cost?</h2>
+    <p class="section-subtitle">Pricing changes often, but the decision framework doesn&rsquo;t. Here&rsquo;s how to think about which plan fits your work &mdash; and what I learned the hard way about usage limits.</p>
+  </div>
+
+  <!-- Plan comparison cards -->
+  <div class="card-grid fade-in">
+    <div class="card">
+      <div class="card-title">Free</div>
+      <div class="card-desc">Access to Claude with basic daily limits. Good for trying it out, but you&rsquo;ll hit walls quickly during any sustained work session.</div>
+      <ul class="plan-features">
+        <li>30&ndash;100 messages per day</li>
+        <li>Resets every 5&ndash;8 hours</li>
+        <li>No Claude Code access</li>
+        <li>Current models (Sonnet)</li>
+      </ul>
+      <span class="card-tag">Best for: Exploring</span>
+    </div>
+    <div class="card">
+      <div class="card-title">Pro &mdash; $20/mo</div>
+      <div class="card-desc">5x the free usage with priority access. Enough for daily conversations, but heavy sessions &mdash; especially Claude Code &mdash; will hit the ceiling fast.</div>
+      <ul class="plan-features">
+        <li>5x Free usage limits</li>
+        <li>Priority access at peak hours</li>
+        <li>Claude Code (limited usage)</li>
+        <li>Google Workspace integration</li>
+      </ul>
+      <span class="card-tag">Best for: Daily use</span>
+    </div>
+    <div class="card recommended">
+      <div class="card-title">Max &mdash; $100 or $200/mo</div>
+      <div class="card-desc">25x or 100x the free limits. Built for people who run long sessions, use Claude Code heavily, or can&rsquo;t afford to be interrupted mid-task.</div>
+      <ul class="plan-features">
+        <li>25x Free ($100) or 100x Free ($200)</li>
+        <li>Highest priority access</li>
+        <li>Full Claude Code + extended thinking</li>
+        <li>Long-term memory across sessions</li>
+      </ul>
+      <span class="card-tag">Best for: Deep work</span>
+    </div>
+  </div>
+
+  <!-- Personal experience callout -->
+  <div class="callout fade-in" style="margin-top:32px">
+    <strong>What actually happened to me:</strong> I started on the $20/mo Pro plan. Within days of heavy Claude Code use, I hit the usage limit mid-session and had to wait hours to continue. Then I hit daily limits. Then weekly limits. I upgraded to the $200/mo Max plan because I couldn&rsquo;t afford the interruptions during client work. Not everyone needs that &mdash; but if you&rsquo;re doing the kind of multi-hour browser automation and code sessions I describe on this site, the Pro plan will run out.
+  </div>
+
+  <!-- Tabbed detail panels -->
+  <div class="tabs fade-in" style="margin-top:40px">
+    <button class="tab-btn active" data-tab="pricing-limits">Usage Limits Explained</button>
+    <button class="tab-btn" data-tab="pricing-teams">Team &amp; Enterprise</button>
+    <button class="tab-btn" data-tab="pricing-advice">My Honest Advice</button>
+  </div>
+
+  <!-- Tab: Usage Limits -->
+  <div class="tab-content active" id="tab-pricing-limits">
+    <div class="config-grid">
+      <div class="config-item fade-in">
+        <h3>How the Limits Actually Work</h3>
+        <p>Claude uses a rolling window, not a simple daily reset. For chat, your oldest messages &ldquo;expire&rdquo; from the count as they pass the 5-hour mark. For heavier usage (especially Claude Code), there are also weekly limits that reset every 7 days. This means you can do multiple sessions per day &mdash; you just need gaps between them.</p>
+      </div>
+      <div class="config-item fade-in">
+        <h3>Claude Code Burns Through Limits Faster</h3>
+        <p>Browser automation, file operations, and code execution all consume significantly more tokens than regular chat. Each Claude Code turn reloads the full context, adding overhead. A single multi-hour Claude Code session can burn through a Pro plan&rsquo;s entire daily allowance in under an hour. This is the #1 thing that catches people off guard.</p>
+      </div>
+      <div class="config-item fade-in">
+        <h3>What Happens When You Hit the Limit</h3>
+        <p>You see a notification and have to wait. On the Pro plan, this can mean a 1&ndash;5 hour pause. On Max plans, the ceiling is high enough that most people rarely hit it &mdash; but even $200/mo Max users have reported limits during extended heavy sessions. Practical tips: use the <code>/compact</code> command to compress context, batch multiple requests into one prompt, and take breaks between intensive sessions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Team & Enterprise -->
+  <div class="tab-content" id="tab-pricing-teams">
+    <div class="config-grid">
+      <div class="config-item fade-in">
+        <h3>Team Standard &mdash; $25&ndash;30/seat/mo</h3>
+        <p>Pro-level usage per person plus an admin console, centralized billing, and shared projects. Still has weekly usage limits &mdash; a heavy Claude Code user on a Team Standard seat will still get cut off mid-week. The team plan doesn&rsquo;t magically remove limits; it just adds organizational features on top of Pro-level access.</p>
+      </div>
+      <div class="config-item fade-in">
+        <h3>Team Premium &mdash; $150/seat/mo</h3>
+        <p>Full Claude Code terminal access with higher limits than standard seats. This is the team equivalent of the Max plan. Worth it for teams where multiple people are doing serious Claude Code work, but expensive per-seat. Make sure the usage justifies the cost.</p>
+      </div>
+      <div class="config-item fade-in">
+        <h3>Enterprise &mdash; Custom Pricing</h3>
+        <p>SSO/SCIM provisioning, HIPAA-ready configuration, 500K token context windows, and dedicated support. Contact Anthropic&rsquo;s sales team. This is for organizations that need compliance features or very high volume &mdash; most small teams won&rsquo;t need this.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: My Honest Advice -->
+  <div class="tab-content" id="tab-pricing-advice">
+    <div class="lesson-grid">
+      <div class="lesson fade-in">
+        <div class="lesson-problem">
+          <h4 style="color: var(--accent);">If you&rsquo;re budget-conscious</h4>
+          <p>Start with the free plan to learn the interface. Move to Pro ($20/mo) when you&rsquo;re using Claude daily. Work in shorter sessions with breaks between them to stay within limits. Avoid long Claude Code sessions on the Pro plan &mdash; they burn quota fast. The <code>/compact</code> command and batching multiple requests into single prompts help stretch your limits further.</p>
+        </div>
+        <div class="lesson-fix">
+          <h4 style="color: var(--accent);">If this is your main work tool</h4>
+          <p>Max 5x ($100/mo) is probably the sweet spot for regular professional use. Max 20x ($200/mo) is only necessary if you&rsquo;re running sustained multi-hour sessions daily &mdash; which is what I do. I think it&rsquo;s worth spending $100&ndash;$200/mo to get the most out of Claude, but it depends on what you can afford and how heavily you use it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block fade-in" style="margin-top:24px">
+      Honest disclosure: my preference is Claude &mdash; even with the usage limits, it&rsquo;s the better tool for the complex, multi-step work I do. But for lighter everyday conversations, I sometimes use ChatGPT because it lets me go longer without hitting a wall. The point isn&rsquo;t to avoid Claude &mdash; it&rsquo;s to know what you&rsquo;re signing up for so the limits don&rsquo;t catch you off guard.
+    </div>
+  </div>
+
+  <!-- Pricing disclaimer -->
+  <div class="callout fade-in" style="margin-top:32px">
+    <strong>Prices change.</strong> These numbers were accurate as of early 2026. Check <a href="https://claude.com/pricing" style="color:var(--accent);text-decoration:underline" target="_blank" rel="noopener">claude.com/pricing</a> for current rates. The decision framework &mdash; start small, upgrade when limits interrupt your work &mdash; stays the same regardless of exact dollar amounts.
+  </div>
+</section>
+
 <!-- ═══════════ STATS ═══════════ -->
 <section id="stats">
   <div class="fade-in">
@@ -1500,17 +1659,22 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// Tab switching
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tab = btn.dataset.tab;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + tab).classList.add('active');
-    // Re-observe fade-in elements in the new tab
-    document.getElementById('tab-' + tab).querySelectorAll('.fade-in:not(.visible)').forEach(el => {
-      observer.observe(el);
+// Tab switching (scoped to parent section to prevent cross-section interference)
+document.querySelectorAll('section').forEach(section => {
+  section.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      section.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      section.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById('tab-' + tab);
+      if (target) {
+        target.classList.add('active');
+        // Re-observe fade-in elements in the new tab
+        target.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+          observer.observe(el);
+        });
+      }
     });
   });
 });
